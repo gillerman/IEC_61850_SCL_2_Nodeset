@@ -1,0 +1,1000 @@
+<UANodeSet xmlns:s0="http://sample.com/Types"
+           xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
+           xmlns:fn="http://www.w3.org/2005/xpath-functions"
+           xmlns:ns0="http://www.iec.ch/61850/2006/SCL"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           xmlns:s1="http://sample.com/Instances"
+           xsi:schemaLocation="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd file:///Z:/Downloads/8-2%20Temp/HQ/UAnode%20set/UANodeSet.xsd">
+   <NamespaceUris>
+      <Uri>http://sample.com/Instances</Uri>
+      <Uri>http://sample.com/Types</Uri>
+   </NamespaceUris>
+   <Aliases>
+      <Alias Alias="Boolean">i=1</Alias>
+      <Alias Alias="SByte">i=2</Alias>
+      <Alias Alias="Byte">i=3</Alias>
+      <Alias Alias="Int16">i=4</Alias>
+      <Alias Alias="UInt16">i=5</Alias>
+      <Alias Alias="Int32">i=6</Alias>
+      <Alias Alias="UInt32">i=7</Alias>
+      <Alias Alias="Int64">i=8</Alias>
+      <Alias Alias="UInt64">i=9</Alias>
+      <Alias Alias="Float">i=10</Alias>
+      <Alias Alias="Double">i=11</Alias>
+      <Alias Alias="DateTime">i=13</Alias>
+      <Alias Alias="String">i=12</Alias>
+      <Alias Alias="Guid">i=14</Alias>
+      <Alias Alias="ByteString">i=15</Alias>
+      <Alias Alias="XmlElement">i=16</Alias>
+      <Alias Alias="NodeId">i=17</Alias>
+      <Alias Alias="ExpandedNodeId">i=18</Alias>
+      <Alias Alias="StatusCode">i=19</Alias>
+      <Alias Alias="QualifiedName">i=20</Alias>
+      <Alias Alias="LocalizedText">i=21</Alias>
+      <Alias Alias="Structure">i=22</Alias>
+      <Alias Alias="Number">i=26</Alias>
+      <Alias Alias="Integer">i=27</Alias>
+      <Alias Alias="UInteger">i=28</Alias>
+      <Alias Alias="HasChild">i=34</Alias>
+      <Alias Alias="Organizes">i=35</Alias>
+      <Alias Alias="HasEventSource">i=36</Alias>
+      <Alias Alias="HasModellingRule">i=37</Alias>
+      <Alias Alias="HasEncoding">i=38</Alias>
+      <Alias Alias="HasDescription">i=39</Alias>
+      <Alias Alias="HasTypeDefinition">i=40</Alias>
+      <Alias Alias="HasSubtype">i=45</Alias>
+      <Alias Alias="HasProperty">i=46</Alias>
+      <Alias Alias="HasComponent">i=47</Alias>
+      <Alias Alias="HasNotifier">i=48</Alias>
+      <Alias Alias="FolderType">i=58</Alias>
+      <Alias Alias="ObjectFolder">i=85</Alias>
+      <Alias Alias="TypeFolder">i=86</Alias>
+      <Alias Alias="ObjectTypes">i=88</Alias>
+   </Aliases>
+   <UAObject NodeId="ns=1;s=S12" BrowseName="1:S12">
+      <DisplayName>S12 Substation</DisplayName>
+      <Description>Baden Substation</Description>
+      <References>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=SSs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=SS</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=D1" BrowseName="1:D1">
+      <DisplayName>D1 Voltage Level</DisplayName>
+      <Description> Voltage Level</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=S12</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=VLs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=VL</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=E1" BrowseName="1:E1">
+      <DisplayName>E1 Voltage Level</DisplayName>
+      <Description> Voltage Level</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=S12</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=VLs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=VL</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=T1" BrowseName="1:T1">
+      <DisplayName>T1 Power Transformer</DisplayName>
+      <Description>PTR Type Power Transformer</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=D1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=XFRs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=XFR</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=W1" BrowseName="1:W1">
+      <DisplayName>W1 Transformer Winding</DisplayName>
+      <Description>PTW Transformer Winding</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=T1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=TWs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=TW</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=W1/S12/D1/Q1/L1" BrowseName="1:W1/S12/D1/Q1/L1">
+      <DisplayName>W1/S12/D1/Q1/L1 Terminal</DisplayName>
+      <Description>W1/S12/D1/Q1/L1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=W1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L1" BrowseName="1:L1">
+      <DisplayName>L1 Connectivity Node</DisplayName>
+      <Description>L1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="true">ns=1;s=W1/S12/D1/Q1/L1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=W2" BrowseName="1:W2">
+      <DisplayName>W2 Transformer Winding</DisplayName>
+      <Description>PTW Transformer Winding</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=T1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=TWs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=TW</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=W2/S12/E1/Q2/L3" BrowseName="1:W2/S12/E1/Q2/L3">
+      <DisplayName>W2/S12/E1/Q2/L3 Terminal</DisplayName>
+      <Description>W2/S12/E1/Q2/L3 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=W2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L3</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L3" BrowseName="1:L3">
+      <DisplayName>L3 Connectivity Node</DisplayName>
+      <Description>L3 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="true">ns=1;s=W2/S12/E1/Q2/L3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=220kV" BrowseName="1:220kV">
+      <DisplayName>220kV Voltage</DisplayName>
+      <Description>220kV Voltage</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=D1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Vs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=V</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=132kV" BrowseName="1:132kV">
+      <DisplayName>132kV Voltage</DisplayName>
+      <Description>132kV Voltage</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=E1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Vs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=V</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=D1Q1" BrowseName="1:D1Q1">
+      <DisplayName>Q1 Bay</DisplayName>
+      <Description>Q1 Bay</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=D1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Bays</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=Bay</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=E1Q1" BrowseName="1:E1Q1">
+      <DisplayName>Q1 Bay</DisplayName>
+      <Description>Q1 Bay</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=E1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Bays</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=Bay</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=E1Q2" BrowseName="1:E1Q2">
+      <DisplayName>Q2 Bay</DisplayName>
+      <Description>Q2 Bay</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=E1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Bays</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=Bay</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=E1Q3" BrowseName="1:E1Q3">
+      <DisplayName>Q3 Bay</DisplayName>
+      <Description>Q3 Bay</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=E1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Bays</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=Bay</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=E1Q4" BrowseName="1:E1Q4">
+      <DisplayName>Q4 Bay</DisplayName>
+      <Description>Q4 Bay</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=E1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Bays</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=Bay</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=E1W1" BrowseName="1:E1W1">
+      <DisplayName>W1 Bay</DisplayName>
+      <Description>W1 Bay</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=E1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Bays</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=Bay</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1" BrowseName="1:I1">
+      <DisplayName>I1 Conducting Equipment</DisplayName>
+      <Description>CTR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QA1" BrowseName="1:QA1">
+      <DisplayName>QA1 Conducting Equipment</DisplayName>
+      <Description>CBR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QB1" BrowseName="1:QB1">
+      <DisplayName>QB1 Conducting Equipment</DisplayName>
+      <Description>DIS Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=U1" BrowseName="1:U1">
+      <DisplayName>U1 Conducting Equipment</DisplayName>
+      <Description>VTR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1" BrowseName="1:I1">
+      <DisplayName>I1 Conducting Equipment</DisplayName>
+      <Description>CTR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QA1" BrowseName="1:QA1">
+      <DisplayName>QA1 Conducting Equipment</DisplayName>
+      <Description>CBR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QB1" BrowseName="1:QB1">
+      <DisplayName>QB1 Conducting Equipment</DisplayName>
+      <Description>DIS Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1" BrowseName="1:I1">
+      <DisplayName>I1 Conducting Equipment</DisplayName>
+      <Description>CTR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=U1" BrowseName="1:U1">
+      <DisplayName>U1 Conducting Equipment</DisplayName>
+      <Description>VTR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QA1" BrowseName="1:QA1">
+      <DisplayName>QA1 Conducting Equipment</DisplayName>
+      <Description>CBR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QB1" BrowseName="1:QB1">
+      <DisplayName>QB1 Conducting Equipment</DisplayName>
+      <Description>DIS Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=U1" BrowseName="1:U1">
+      <DisplayName>U1 Conducting Equipment</DisplayName>
+      <Description>VTR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1" BrowseName="1:I1">
+      <DisplayName>I1 Conducting Equipment</DisplayName>
+      <Description>CTR Type Conducting Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=Q4</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=" BrowseName="1:">
+      <DisplayName> Connectivity Node</DisplayName>
+      <Description> Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=W1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1/S12/D1/Q1/L1" BrowseName="1:I1/S12/D1/Q1/L1">
+      <DisplayName>I1/S12/D1/Q1/L1 Terminal</DisplayName>
+      <Description>I1/S12/D1/Q1/L1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L1" BrowseName="1:L1">
+      <DisplayName>L1 Connectivity Node</DisplayName>
+      <Description>L1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=I1/S12/D1/Q1/L1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QA1/S12/E1/Q1/L1" BrowseName="1:QA1/S12/E1/Q1/L1">
+      <DisplayName>QA1/S12/E1/Q1/L1 Terminal</DisplayName>
+      <Description>QA1/S12/E1/Q1/L1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QA1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L1" BrowseName="1:L1">
+      <DisplayName>L1 Connectivity Node</DisplayName>
+      <Description>L1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QA1/S12/E1/Q1/L1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QA1/S12/E1/Q1/L2" BrowseName="1:QA1/S12/E1/Q1/L2">
+      <DisplayName>QA1/S12/E1/Q1/L2 Terminal</DisplayName>
+      <Description>QA1/S12/E1/Q1/L2 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QA1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L2</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L2" BrowseName="1:L2">
+      <DisplayName>L2 Connectivity Node</DisplayName>
+      <Description>L2 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QA1/S12/E1/Q1/L2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QB1/S12/E1/W1/BB1" BrowseName="1:QB1/S12/E1/W1/BB1">
+      <DisplayName>QB1/S12/E1/W1/BB1 Terminal</DisplayName>
+      <Description>QB1/S12/E1/W1/BB1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QB1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=BB1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=BB1" BrowseName="1:BB1">
+      <DisplayName>BB1 Connectivity Node</DisplayName>
+      <Description>BB1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QB1/S12/E1/W1/BB1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QB1/S12/E1/Q1/L1" BrowseName="1:QB1/S12/E1/Q1/L1">
+      <DisplayName>QB1/S12/E1/Q1/L1 Terminal</DisplayName>
+      <Description>QB1/S12/E1/Q1/L1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QB1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L1" BrowseName="1:L1">
+      <DisplayName>L1 Connectivity Node</DisplayName>
+      <Description>L1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QB1/S12/E1/Q1/L1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=U1/S12/E1/Q1/L2" BrowseName="1:U1/S12/E1/Q1/L2">
+      <DisplayName>U1/S12/E1/Q1/L2 Terminal</DisplayName>
+      <Description>U1/S12/E1/Q1/L2 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=U1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L2</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L2" BrowseName="1:L2">
+      <DisplayName>L2 Connectivity Node</DisplayName>
+      <Description>L2 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=U1/S12/E1/Q1/L2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=U1/S12/E1/Q1/L3" BrowseName="1:U1/S12/E1/Q1/L3">
+      <DisplayName>U1/S12/E1/Q1/L3 Terminal</DisplayName>
+      <Description>U1/S12/E1/Q1/L3 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=U1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L3</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L3" BrowseName="1:L3">
+      <DisplayName>L3 Connectivity Node</DisplayName>
+      <Description>L3 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=U1/S12/E1/Q1/L3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1/S12/E1/Q1/L3" BrowseName="1:I1/S12/E1/Q1/L3">
+      <DisplayName>I1/S12/E1/Q1/L3 Terminal</DisplayName>
+      <Description>I1/S12/E1/Q1/L3 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L3</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L3" BrowseName="1:L3">
+      <DisplayName>L3 Connectivity Node</DisplayName>
+      <Description>L3 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=I1/S12/E1/Q1/L3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1/S12/E1/Q1/L4" BrowseName="1:I1/S12/E1/Q1/L4">
+      <DisplayName>I1/S12/E1/Q1/L4 Terminal</DisplayName>
+      <Description>I1/S12/E1/Q1/L4 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L4</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L4" BrowseName="1:L4">
+      <DisplayName>L4 Connectivity Node</DisplayName>
+      <Description>L4 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=I1/S12/E1/Q1/L4</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QA1/S12/E1/Q2/L0" BrowseName="1:QA1/S12/E1/Q2/L0">
+      <DisplayName>QA1/S12/E1/Q2/L0 Terminal</DisplayName>
+      <Description>QA1/S12/E1/Q2/L0 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QA1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L0</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L0" BrowseName="1:L0">
+      <DisplayName>L0 Connectivity Node</DisplayName>
+      <Description>L0 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QA1/S12/E1/Q2/L0</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QA1/S12/E1/Q2/L1" BrowseName="1:QA1/S12/E1/Q2/L1">
+      <DisplayName>QA1/S12/E1/Q2/L1 Terminal</DisplayName>
+      <Description>QA1/S12/E1/Q2/L1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QA1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L1" BrowseName="1:L1">
+      <DisplayName>L1 Connectivity Node</DisplayName>
+      <Description>L1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QA1/S12/E1/Q2/L1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QB1/S12/E1/Q4/B1" BrowseName="1:QB1/S12/E1/Q4/B1">
+      <DisplayName>QB1/S12/E1/Q4/B1 Terminal</DisplayName>
+      <Description>QB1/S12/E1/Q4/B1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QB1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=B1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=B1" BrowseName="1:B1">
+      <DisplayName>B1 Connectivity Node</DisplayName>
+      <Description>B1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QB1/S12/E1/Q4/B1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QB1/S12/E1/Q2/L0" BrowseName="1:QB1/S12/E1/Q2/L0">
+      <DisplayName>QB1/S12/E1/Q2/L0 Terminal</DisplayName>
+      <Description>QB1/S12/E1/Q2/L0 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QB1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L0</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L0" BrowseName="1:L0">
+      <DisplayName>L0 Connectivity Node</DisplayName>
+      <Description>L0 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QB1/S12/E1/Q2/L0</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1/S12/E1/Q2/L1" BrowseName="1:I1/S12/E1/Q2/L1">
+      <DisplayName>I1/S12/E1/Q2/L1 Terminal</DisplayName>
+      <Description>I1/S12/E1/Q2/L1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L1" BrowseName="1:L1">
+      <DisplayName>L1 Connectivity Node</DisplayName>
+      <Description>L1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=I1/S12/E1/Q2/L1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1/S12/E1/Q2/L2" BrowseName="1:I1/S12/E1/Q2/L2">
+      <DisplayName>I1/S12/E1/Q2/L2 Terminal</DisplayName>
+      <Description>I1/S12/E1/Q2/L2 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L2</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L2" BrowseName="1:L2">
+      <DisplayName>L2 Connectivity Node</DisplayName>
+      <Description>L2 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=I1/S12/E1/Q2/L2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=U1/S12/E1/Q2/L2" BrowseName="1:U1/S12/E1/Q2/L2">
+      <DisplayName>U1/S12/E1/Q2/L2 Terminal</DisplayName>
+      <Description>U1/S12/E1/Q2/L2 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=U1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L2</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L2" BrowseName="1:L2">
+      <DisplayName>L2 Connectivity Node</DisplayName>
+      <Description>L2 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=U1/S12/E1/Q2/L2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=U1/S12/E1/Q2/L3" BrowseName="1:U1/S12/E1/Q2/L3">
+      <DisplayName>U1/S12/E1/Q2/L3 Terminal</DisplayName>
+      <Description>U1/S12/E1/Q2/L3 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=U1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L3</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L3" BrowseName="1:L3">
+      <DisplayName>L3 Connectivity Node</DisplayName>
+      <Description>L3 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=U1/S12/E1/Q2/L3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QA1/S12/E1/Q3/L1" BrowseName="1:QA1/S12/E1/Q3/L1">
+      <DisplayName>QA1/S12/E1/Q3/L1 Terminal</DisplayName>
+      <Description>QA1/S12/E1/Q3/L1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QA1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L1" BrowseName="1:L1">
+      <DisplayName>L1 Connectivity Node</DisplayName>
+      <Description>L1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QA1/S12/E1/Q3/L1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QA1/S12/E1/Q3/L2" BrowseName="1:QA1/S12/E1/Q3/L2">
+      <DisplayName>QA1/S12/E1/Q3/L2 Terminal</DisplayName>
+      <Description>QA1/S12/E1/Q3/L2 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QA1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L2</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L2" BrowseName="1:L2">
+      <DisplayName>L2 Connectivity Node</DisplayName>
+      <Description>L2 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QA1/S12/E1/Q3/L2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QB1/S12/E1/W1/BB1" BrowseName="1:QB1/S12/E1/W1/BB1">
+      <DisplayName>QB1/S12/E1/W1/BB1 Terminal</DisplayName>
+      <Description>QB1/S12/E1/W1/BB1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QB1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=BB1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=BB1" BrowseName="1:BB1">
+      <DisplayName>BB1 Connectivity Node</DisplayName>
+      <Description>BB1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QB1/S12/E1/W1/BB1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=QB1/S12/E1/Q3/L1" BrowseName="1:QB1/S12/E1/Q3/L1">
+      <DisplayName>QB1/S12/E1/Q3/L1 Terminal</DisplayName>
+      <Description>QB1/S12/E1/Q3/L1 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=QB1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L1</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L1" BrowseName="1:L1">
+      <DisplayName>L1 Connectivity Node</DisplayName>
+      <Description>L1 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=QB1/S12/E1/Q3/L1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=U1/S12/E1/Q3/L2" BrowseName="1:U1/S12/E1/Q3/L2">
+      <DisplayName>U1/S12/E1/Q3/L2 Terminal</DisplayName>
+      <Description>U1/S12/E1/Q3/L2 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=U1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L2</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L2" BrowseName="1:L2">
+      <DisplayName>L2 Connectivity Node</DisplayName>
+      <Description>L2 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=U1/S12/E1/Q3/L2</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=U1/S12/E1/Q3/L3" BrowseName="1:U1/S12/E1/Q3/L3">
+      <DisplayName>U1/S12/E1/Q3/L3 Terminal</DisplayName>
+      <Description>U1/S12/E1/Q3/L3 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=U1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L3</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L3" BrowseName="1:L3">
+      <DisplayName>L3 Connectivity Node</DisplayName>
+      <Description>L3 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=U1/S12/E1/Q3/L3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1/S12/E1/Q3/L3" BrowseName="1:I1/S12/E1/Q3/L3">
+      <DisplayName>I1/S12/E1/Q3/L3 Terminal</DisplayName>
+      <Description>I1/S12/E1/Q3/L3 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L3</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L3" BrowseName="1:L3">
+      <DisplayName>L3 Connectivity Node</DisplayName>
+      <Description>L3 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=I1/S12/E1/Q3/L3</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I1/S12/E1/Q3/L4" BrowseName="1:I1/S12/E1/Q3/L4">
+      <DisplayName>I1/S12/E1/Q3/L4 Terminal</DisplayName>
+      <Description>I1/S12/E1/Q3/L4 Terminal</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Ts</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=T</Reference>
+         <Reference ReferenceType="ns=1;s=T.CN" IsForward="true">ns=1;s=L4</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=L4" BrowseName="1:L4">
+      <DisplayName>L4 Connectivity Node</DisplayName>
+      <Description>L4 Connectivity Node</Description>
+      <References>
+         <Reference ReferenceType="ns=1;s=CN.T" IsForward="false">ns=1;s=I1/S12/E1/Q3/L4</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=CNs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=CN</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=RA" BrowseName="1:RA">
+      <DisplayName>R Phase Sub Equipment</DisplayName>
+      <Description>RA Phase Sub Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=SEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=SE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=SB" BrowseName="1:SB">
+      <DisplayName>S Phase Sub Equipment</DisplayName>
+      <Description>SB Phase Sub Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=SEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=SE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=TC" BrowseName="1:TC">
+      <DisplayName>T Phase Sub Equipment</DisplayName>
+      <Description>TC Phase Sub Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=SEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=SE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=I0N" BrowseName="1:I0N">
+      <DisplayName>I0 Phase Sub Equipment</DisplayName>
+      <Description>I0N Phase Sub Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=I1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=SEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=SE</Reference>
+      </References>
+   </UAObject>
+   <UAObject NodeId="ns=1;s=AA" BrowseName="1:AA">
+      <DisplayName>A Phase Sub Equipment</DisplayName>
+      <Description>AA Phase Sub Equipment</Description>
+      <References>
+         <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=U1</Reference>
+         <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=SEs</Reference>
+         <Reference ReferenceType="HasTypeDefinition">ns=1;s=SE</Reference>
+      </References>
+   </UAObject>
+</UANodeSet>

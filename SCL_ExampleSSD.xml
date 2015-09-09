@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<SCL xmlns="http://www.iec.ch/61850/2006/SCL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iec.ch/61850/2006/SCL SCL.xsd">
+	<Header id="SSD Example " nameStructure="IEDName"/>
+	<Substation name="baden220_132">
+		<PowerTransformer name="T1" type="PTR">
+			<LNode lnInst="1" lnClass="PDIF" ldInst="F1"/>
+			<LNode lnInst="1" lnClass="TCTR" ldInst="C1"/>
+			<TransformerWinding name="W1" type="PTW">
+				<Terminal connectivityNode="baden220_132/D1/Q1/L1" substationName="baden220_132" voltageLevelName="D1" bayName="Q1" cNodeName="L1"/>
+			</TransformerWinding>
+			<TransformerWinding name="W2" type="PTW">
+				<Terminal connectivityNode="baden220_132/E1/Q2/L3" substationName="baden220_132" voltageLevelName="E1" bayName="Q2" cNodeName="L3"/>
+			</TransformerWinding>
+		</PowerTransformer>
+		<VoltageLevel name="D1">
+			<Voltage multiplier="k" unit="V">220</Voltage>
+			<Bay name="Q1">
+				<LNode lnInst="1" lnClass="PDIS" ldInst="F1"/>
+				<ConductingEquipment name="I1" type="CTR">
+					<Terminal connectivityNode="baden220_132/D1/Q1/L1" substationName="baden220_132" voltageLevelName="D1" bayName="Q1" cNodeName="L1"/>
+				</ConductingEquipment>
+				<ConnectivityNode name="L1" pathName="baden220_132/D1/Q1/L1"/>
+			</Bay>
+		</VoltageLevel>
+		<VoltageLevel name="E1">
+			<Voltage multiplier="k" unit="V">132</Voltage>
+			<Bay name="Q2">
+				<ConductingEquipment name="QA1" type="CBR">
+					<LNode lnInst="1" lnClass="CILO" ldInst="C1" iedName="D1Q1SB4"/>
+					<Terminal connectivityNode="baden220_132/E1/Q2/L1" substationName="baden220_132" voltageLevelName="E1" bayName="Q2" cNodeName="L1"/>
+					<Terminal connectivityNode="baden220_132/E1/Q2/L2" substationName="baden220_132" voltageLevelName="E1" bayName="Q2" cNodeName="L2"/>
+				</ConductingEquipment>
+				<ConductingEquipment name="QB1" type="DIS">
+					<LNode lnInst="2" lnClass="CSWI" ldInst="C1"/>
+					<LNode lnInst="2" lnClass="CILO" ldInst="C1"/>
+					<Terminal connectivityNode="baden220_132/E1/W1/B1" substationName="baden220_132" voltageLevelName="E1" bayName="W1" cNodeName="B1"/>
+					<Terminal connectivityNode="baden220_132/E1/Q2/L1" substationName="baden220_132" voltageLevelName="E1" bayName="Q2" cNodeName="L1"/>
+				</ConductingEquipment>
+				<ConductingEquipment name="I1" type="CTR">
+					<Terminal connectivityNode="baden220_132/E1/Q2/L2" substationName="baden220_132" voltageLevelName="E1" bayName="Q2" cNodeName="L2"/>
+					<Terminal connectivityNode="baden220_132/E1/Q2/L3" substationName="baden220_132" voltageLevelName="E1" bayName="Q2" cNodeName="L3"/>
+				</ConductingEquipment>
+				<ConductingEquipment name="U1" type="VTR">
+					<Terminal connectivityNode="baden220_132/E1/Q2/L3" substationName="baden220_132" voltageLevelName="E1" bayName="Q2" cNodeName="L3"/>
+				</ConductingEquipment>
+				<ConnectivityNode name="L1" pathName="baden220_132/E1/Q2/L1"/>
+				<ConnectivityNode name="L2" pathName="baden220_132/E1/Q2/L2"/>
+				<ConnectivityNode name="L3" pathName="baden220_132/E1/Q2/L3"/>
+			</Bay>
+			<Bay name="W1">
+				<ConnectivityNode name="B1" pathName="baden220_132/E1/W1/B1"/>
+			</Bay>
+		</VoltageLevel>
+	</Substation>
+</SCL>

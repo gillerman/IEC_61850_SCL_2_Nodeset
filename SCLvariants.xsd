@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:scl="http://www.iec.ch/61850/2006/SCL" xmlns="http://www.iec.ch/61850/2006/SCL" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.iec.ch/61850/2006/SCL" elementFormDefault="qualified" attributeFormDefault="unqualified" finalDefault="extension" version="1.4">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+	    COPYRIGHT IEC, 2005. Version 1.4. Release 2005/09/11.
+	    This schema is for infomational purposes only, and is not normative!
+	    Notes:
+	    - Identity constraints in comments, in order to avoid any clashes with the existing ones.
+	    - The elements are defined as abstract to prevent their usage in practice.
+		</xs:documentation>
+	</xs:annotation>
+	<!-- =========================================
+    Including the general case:
+    ========================================= -->
+	<xs:include schemaLocation="SCL.xsd"/>
+	<!-- =========================================
+    IED Capability Description (ICD) variant
+    ========================================= -->
+	<xs:element name="SCL_ICD" abstract="true">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">SCL for an IED Capability Description (ICD)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="tBaseElement">
+					<xs:sequence>
+						<xs:element name="Header" type="tHeader">
+							<!--<xs:unique name="uniqueHitem">
+			    <xs:selector xpath="./scl:History/scl:Hitem"/>
+			    <xs:field xpath="@version"/>
+			    <xs:field xpath="@revision"/>
+			</xs:unique>-->
+						</xs:element>
+						<xs:element name="Substation" type="tSubstationTemplate" minOccurs="0">
+							<!--<xs:unique name="uniqueVoltageLevelInSubstation">
+			    <xs:selector xpath="./scl:VoltageLevel"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>
+			    <xs:unique name="uniquePowerTranformerInSubstation">
+			    <xs:selector xpath="./scl:PowerTransformer"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>
+			    <xs:unique name="uniqueFunctionInSubstation">
+			    <xs:selector xpath="./scl:Function"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>
+			    <xs:key name="ConnectivityNodeKey">
+			    <xs:selector xpath=".//scl:ConnectivityNode"/>
+			    <xs:field xpath="@pathName"/>
+			</xs:key>
+			    <xs:keyref name="ref2ConnectivityNode" refer="ConnectivityNodeKey">
+			    <xs:selector xpath=".//scl:Terminal"/>
+			    <xs:field xpath="@connectivityNode"/>
+			</xs:keyref>
+			    <xs:unique name="uniqueLNode">
+			    <xs:selector xpath=".//scl:LNode"/>
+			    <xs:field xpath="@lnInst"/>
+			    <xs:field xpath="@lnClass"/>
+			    <xs:field xpath="@iedName"/>
+			    <xs:field xpath="@ldInst"/>
+			    <xs:field xpath="@prefix"/>
+			</xs:unique>-->
+						</xs:element>
+						<xs:element ref="Communication" minOccurs="0"/>
+						<xs:element name="IED" type="tIEDTemplate">
+							<!--<xs:unique name="uniqueAccessPointInIED">
+			    <xs:selector xpath="./scl:AccessPoint"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>
+			    <xs:unique name="uniqueLDeviceInIED">
+			    <xs:selector xpath=".//scl:LDevice"/>
+			    <xs:field xpath="@inst"/>
+			</xs:unique>
+			    <xs:unique name="uniqueGSEControlInIED">
+			    <xs:selector xpath=".//scl:GSEControl"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>
+			    <xs:unique name="uniqueSMVControlInIED">
+			    <xs:selector xpath=".//scl:SampledValueControl"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>
+			    <xs:key name="LDeviceInIEDKey">
+			    <xs:selector xpath="./scl:AccessPoint/scl:Server/scl:LDevice"/>
+			    <xs:field xpath="@inst"/>
+			</xs:key>
+			    <xs:keyref name="ref2LDeviceInIED" refer="LDeviceInIEDKey">
+			    <xs:selector xpath="./scl:AccessPoint/scl:Server/scl:LDevice/scl:LN0/scl:LogControl"/>
+			    <xs:field xpath="@logName"/>
+			</xs:keyref>-->
+						</xs:element>
+						<xs:element ref="DataTypeTemplates"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<!--<xs:key name="LNodeTypeKey">
+	<xs:selector xpath="./scl:DataTypeTemplates/scl:LNodeType"/>
+	<xs:field xpath="@id"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:key>
+	<xs:keyref name="ref2LNodeTypeDomain1" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:LN"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>
+	<xs:keyref name="ref2LNodeTypeDomain2" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:Server/scl:LDevice/scl:LN"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>
+	<xs:keyref name="ref2LNodeTypeLLN0" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:Server/scl:LDevice/scl:LN0"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>-->
+	</xs:element>
+	<!-- =========================================
+    "Pure" System Specification Document (SSD) variant
+    ========================================= -->
+	<xs:element name="SCL_pureSSD" abstract="true">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">SCL for a "Pure" System Specification Document (SSD)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="tBaseElement">
+					<xs:sequence>
+						<xs:element name="Header" type="tHeader">
+							<!--<xs:unique name="uniqueHitem">
+			    <xs:selector xpath="./scl:History/scl:Hitem"/>
+			    <xs:field xpath="@version"/>
+			    <xs:field xpath="@revision"/>
+			</xs:unique>-->
+						</xs:element>
+						<xs:element ref="Substation" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<!--<xs:unique name="uniqueSubstation">
+	<xs:selector xpath="./scl:Substation"/>
+	<xs:field xpath="@name"/>
+    </xs:unique>-->
+	</xs:element>
+	<!-- =========================================
+    System Specification Document (SSD) variant
+    ========================================= -->
+	<xs:element name="SCL_SSD" abstract="true">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">SCL for a System Specification Document (SSD)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="tBaseElement">
+					<xs:sequence>
+						<xs:element name="Header" type="tHeader">
+							<!--<xs:unique name="uniqueHitem">
+			    <xs:selector xpath="./scl:History/scl:Hitem"/>
+			    <xs:field xpath="@version"/>
+			    <xs:field xpath="@revision"/>
+			</xs:unique>-->
+						</xs:element>
+						<xs:element ref="Substation" maxOccurs="unbounded"/>
+						<xs:element ref="Communication" minOccurs="0"/>
+						<xs:element ref="IED" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="DataTypeTemplates" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<!--<xs:unique name="uniqueSubstation">
+	<xs:selector xpath="./scl:Substation"/>
+	<xs:field xpath="@name"/>
+    </xs:unique>
+	<xs:key name="IEDKey">
+	<xs:selector xpath="./scl:IED"/>
+	<xs:field xpath="@name"/>
+    </xs:key>
+	<xs:key name="LNodeTypeKey">
+	<xs:selector xpath="./scl:DataTypeTemplates/scl:LNodeType"/>
+	<xs:field xpath="@id"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:key>
+	<xs:keyref name="ref2LNodeTypeDomain1" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:LN"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>
+	<xs:keyref name="ref2LNodeTypeDomain2" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:Server/scl:LDevice/scl:LN"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>
+	<xs:keyref name="ref2LNodeTypeLLN0" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:Server/scl:LDevice/scl:LN0"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>-->
+	</xs:element>
+	<!-- =========================================
+    Substation Configuration Description (SCD) variant
+    ========================================= -->
+	<xs:element name="SCL_SCD" abstract="true">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">SCL for a Substation Configuration Description (SCD)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="tBaseElement">
+					<xs:sequence>
+						<xs:element name="Header" type="tHeader">
+							<!--<xs:unique name="uniqueHitem">
+			    <xs:selector xpath="./scl:History/scl:Hitem"/>
+			    <xs:field xpath="@version"/>
+			    <xs:field xpath="@revision"/>
+			</xs:unique>-->
+						</xs:element>
+						<xs:element ref="Substation" maxOccurs="unbounded"/>
+						<xs:element ref="Communication"/>
+						<xs:element ref="IED" maxOccurs="unbounded"/>
+						<xs:element ref="DataTypeTemplates"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<!--<xs:unique name="uniqueSubstation">
+	<xs:selector xpath="./scl:Substation"/>
+	<xs:field xpath="@name"/>
+    </xs:unique>
+	<xs:key name="IEDKey">
+	<xs:selector xpath="./scl:IED"/>
+	<xs:field xpath="@name"/>
+    </xs:key>
+	<xs:key name="LNodeTypeKey">
+	<xs:selector xpath="./scl:DataTypeTemplates/scl:LNodeType"/>
+	<xs:field xpath="@id"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:key>
+	<xs:keyref name="ref2LNodeTypeDomain1" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:LN"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>
+	<xs:keyref name="ref2LNodeTypeDomain2" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:Server/scl:LDevice/scl:LN"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>
+	<xs:keyref name="ref2LNodeTypeLLN0" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:Server/scl:LDevice/scl:LN0"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>-->
+	</xs:element>
+	<!-- =========================================
+    Configured IED Description (CID) variant
+    ========================================= -->
+	<xs:element name="SCL_CID" abstract="true">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">SCL for a Configured IED Description (CID)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="tBaseElement">
+					<xs:sequence>
+						<xs:element name="Header" type="tHeader">
+							<!--<xs:unique name="uniqueHitem">
+			    <xs:selector xpath="./scl:History/scl:Hitem"/>
+			    <xs:field xpath="@version"/>
+			    <xs:field xpath="@revision"/>
+			</xs:unique>-->
+						</xs:element>
+						<xs:element ref="Substation" minOccurs="0"/>
+						<xs:element ref="Communication"/>
+						<xs:element ref="IED" maxOccurs="unbounded"/>
+						<xs:element ref="DataTypeTemplates"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<!--<xs:key name="LNodeTypeKey">
+	<xs:selector xpath="./scl:DataTypeTemplates/scl:LNodeType"/>
+	<xs:field xpath="@id"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:key>
+	<xs:keyref name="ref2LNodeTypeDomain1" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:LN"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>
+	<xs:keyref name="ref2LNodeTypeDomain2" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:Server/scl:LDevice/scl:LN"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>
+	<xs:keyref name="ref2LNodeTypeLLN0" refer="LNodeTypeKey">
+	<xs:selector xpath="./scl:IED/scl:AccessPoint/scl:Server/scl:LDevice/scl:LN0"/>
+	<xs:field xpath="@lnType"/>
+	<xs:field xpath="@lnClass"/>
+    </xs:keyref>-->
+	</xs:element>
+	<!-- =========================================
+    Miscellaneous type restrictions
+    ========================================= -->
+	<xs:complexType name="tSubstationTemplate">
+		<xs:complexContent>
+			<xs:restriction base="tSubstation">
+				<xs:sequence>
+					<xs:sequence>
+						<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="Text" type="tText" minOccurs="0"/>
+						<xs:element name="Private" type="tPrivate" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="LNode" type="tLNode" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="PowerTransformer" type="tPowerTransformer" minOccurs="0" maxOccurs="unbounded">
+							<!--<xs:unique name="uniqueWindingInPowerTransformer">
+			    <xs:selector xpath="./scl:TransformerWinding"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>-->
+						</xs:element>
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="VoltageLevel" type="tVoltageLevel" maxOccurs="unbounded">
+							<!--<xs:unique name="uniqueBayInVoltageLevel">
+			    <xs:selector xpath="./scl:Bay"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>
+			    <xs:unique name="uniquePowerTransformerInVoltageLevel">
+			    <xs:selector xpath="./scl:PowerTransformer"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>
+			</xs:element>
+			    <xs:element name="Function" type="tFunction" minOccurs="0" maxOccurs="unbounded">
+			    <xs:unique name="uniqueSubFunctionInFunction">
+			    <xs:selector xpath="./scl:SubFunction"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>
+			    <xs:unique name="uniqueGeneralEquipmentInFunction">
+			    <xs:selector xpath="./scl:GeneralEquipment"/>
+			    <xs:field xpath="@name"/>
+			</xs:unique>-->
+						</xs:element>
+					</xs:sequence>
+				</xs:sequence>
+				<xs:attribute name="name" type="tName" use="required" fixed="TEMPLATE"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="tIEDTemplate">
+		<xs:complexContent>
+			<xs:restriction base="tIED">
+				<xs:sequence>
+					<xs:sequence>
+						<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="Text" type="tText" minOccurs="0"/>
+						<xs:element name="Private" type="tPrivate" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="Services" type="tServices" minOccurs="0"/>
+						<xs:element name="AccessPoint" type="tAccessPoint" maxOccurs="unbounded">
+							<!--<xs:unique name="uniqueLNInAccessPoint">
+			    <xs:annotation>
+			    <xs:documentation xml:lang="en">Only for those LN that are direct children of this AccessPoint.</xs:documentation>
+			</xs:annotation>
+			    <xs:selector xpath=".//scl:LN"/>
+			    <xs:field xpath="@inst"/>
+			    <xs:field xpath="@lnClass"/>
+			    <xs:field xpath="@prefix"/>
+			</xs:unique>-->
+						</xs:element>
+					</xs:sequence>
+				</xs:sequence>
+				<xs:attribute name="name" type="tName" use="required" fixed="TEMPLATE"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

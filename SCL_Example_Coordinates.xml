@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SCL xmlns="http://www.iec.ch/61850/2006/SCL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sxy="http://www.iec.ch/61850/2006/SCLcoordinates" xsi:schemaLocation="http://www.iec.ch/61850/2006/SCL
+                                                   SCL.xsd
+                                                   http://www.iec.ch/61850/2006/SCLcoordinates
+                                                   SCL_Coordinates.xsd">
+	<Header id="SCL Example T1-1" nameStructure="IEDName"/>
+	<Substation name="baden220_132" sxy:x="0" sxy:y="0">
+		<PowerTransformer name="T1" type="PTR">
+			<sxy:Coord sxy:x="1" sxy:y="10" sxy:dir="horizontal"/>
+			<TransformerWinding name="W1" type="PTW">
+			</TransformerWinding>
+			<TransformerWinding name="W2" type="PTW">
+			</TransformerWinding>
+		</PowerTransformer>
+		<VoltageLevel name="VL1" sxy:x="1" sxy:y="1">
+			<Bay name="B1" sxy:x="1" sxy:y="1" sxy:dir="horizontal"/>
+		</VoltageLevel>
+	</Substation>
+</SCL>

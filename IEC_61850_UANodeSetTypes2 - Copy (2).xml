@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Title:CID to UANodeset Stylesheet
+Copyright ©  OPC Foundation, Inc., 2013. Released 2013-02-22 10:34
+
+Authors: Denis Francesconi, Hydro-Québec
+         John Gillerman, GridCloudSystem, Inc.
+
+Unless explicitly acquired and licensed from Licensor under another license, 
+the contents of this file are subject to the Reciprocal Community License ("RCL") Version 0.9, 
+or subsequent versions as allowed by the RCL, and You may not copy or use this file in either source code 
+or executable form, except in compliance with the terms and conditions of the RCL.
+
+All software distributed under the RCL is provided strictly on an "AS IS" basis, 
+WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, AND LICENSOR HEREBY DISCLAIMS ALL SUCH WARRANTIES, 
+INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, 
+QUIET ENJOYMENT, OR NON-INFRINGEMENT. 
+
+See the RCL for specific language governing rights and limitations under the RCL.
+-->
+<UANodeSet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+           xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd"
+           xmlns:my="http://www.iec.ch/61850/2003/SCL"
+           xmlns:s0="http://sample.com/Types"
+           xmlns:s1="http://sample.com/Instances"
+           xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd C:/Users/Administrator/Desktop/John/UANodeSet.xsd">
+  <NamespaceUris>
+    <Uri>http://sample.com/Instances</Uri>
+    <Uri>http://sample.com/Types</Uri>
+  </NamespaceUris>
+  <Aliases>
+    <Alias Alias="Boolean">i=1</Alias>
+    <Alias Alias="SByte">i=2</Alias>
+    <Alias Alias="Byte">i=3</Alias>
+    <Alias Alias="Int16">i=4</Alias>
+    <Alias Alias="UInt16">i=5</Alias>
+    <Alias Alias="Int32">i=6</Alias>
+    <Alias Alias="UInt32">i=7</Alias>
+    <Alias Alias="Int64">i=8</Alias>
+    <Alias Alias="UInt64">i=9</Alias>
+    <Alias Alias="Float">i=10</Alias>
+    <Alias Alias="Double">i=11</Alias>
+    <Alias Alias="DateTime">i=13</Alias>
+    <Alias Alias="String">i=12</Alias>
+    <Alias Alias="Guid">i=14</Alias>
+    <Alias Alias="ByteString">i=15</Alias>
+    <Alias Alias="XmlElement">i=16</Alias>
+    <Alias Alias="NodeId">i=17</Alias>
+    <Alias Alias="ExpandedNodeId">i=18</Alias>
+    <Alias Alias="StatusCode">i=19</Alias>
+    <Alias Alias="QualifiedName">i=20</Alias>
+    <Alias Alias="LocalizedText">i=21</Alias>
+    <Alias Alias="Structure">i=22</Alias>
+    <Alias Alias="Number">i=26</Alias>
+    <Alias Alias="Integer">i=27</Alias>
+    <Alias Alias="UInteger">i=28</Alias>
+    <Alias Alias="HasChild">i=34</Alias>
+    <Alias Alias="Organizes">i=35</Alias>
+    <Alias Alias="HasEventSource">i=36</Alias>
+    <Alias Alias="HasModellingRule">i=37</Alias>
+    <Alias Alias="HasEncoding">i=38</Alias>
+    <Alias Alias="HasDescription">i=39</Alias>
+    <Alias Alias="HasTypeDefinition">i=40</Alias>
+    <Alias Alias="HasSubtype">i=45</Alias>
+    <Alias Alias="HasProperty">i=46</Alias>
+    <Alias Alias="HasComponent">i=47</Alias>
+    <Alias Alias="HasNotifier">i=48</Alias>
+    <Alias Alias="FolderType">i=58</Alias>
+    <Alias Alias="ObjectFolder">i=85</Alias>
+    <Alias Alias="TypeFolder">i=86</Alias>
+    <Alias Alias="ObjectTypes">i=88</Alias>
+  </Aliases>
+  
+<!--
+Section 1:
+CREATE Object Types for above and including LNode super type
+-->
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=BaseIEC61850ObjectType</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:BaseIEC61850ObjectType</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Base Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Base Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
+        </References>
+      </UAObjectType>
+      <UAReferenceType NodeId="ns=1;s=Base IEC 61850 Reference" BrowseName="1:Base IEC 61850 Reference"
+                      IsAbstract="true"
+                      Symmetric="false">
+        <DisplayName>IEC 61970 Base IEC 61850 Reference</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=32</Reference>
+        </References>
+        <InverseName>IEC 61850 ReferencedBy</InverseName>
+      </UAReferenceType>
+<!--
+Section 2:
+CREATE Data Types for LNode and CDC super types
+-->
+      <UADataType>
+        <xsl:attribute name="NodeId">ns=1;s=Base CDC Data Type</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Base CDC Data Type</xsl:attribute>
+        <DisplayName>IEC 61850 Base Common Data Class Data Type</DisplayName>
+        <Description>IEC 61850 Base Common Data Class Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=22</Reference>
+        </References>
+      </UADataType>
+      <UADataType>
+        <xsl:attribute name="NodeId">ns=1;s=Composed CDC Data Type</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Composed CDC Data Type</xsl:attribute>
+        <DisplayName>IEC 61850 Composed Common Data Class Data Type</DisplayName>
+        <Description>IEC 61850 Composed Common Data Class Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=Base CDC Data Type</Reference>
+        </References>
+      </UADataType>
+      <UADataType>
+        <xsl:attribute name="NodeId">ns=1;s=Primitive CDC Data Type</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Primitive CDC Data Type</xsl:attribute>
+        <DisplayName>IEC 61850 Primitive Common Data Class Data Type</DisplayName>
+        <Description>IEC 61850 Primitive Common Data Class Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=Base CDC Data Type</Reference>
+        </References>
+      </UADataType>
+      <UADataType>
+        <xsl:attribute name="NodeId">ns=1;s=Substitution CDC Data Type</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Substitution CDC Data Type</xsl:attribute>
+        <DisplayName>IEC 61850 Substitution Common Data Class Data Type</DisplayName>
+        <Description>IEC 61850 Substitution Common Data Class Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=Primitive CDC Data Type</Reference>
+        </References>
+      </UADataType>
+      <!--
+Section 3:
+CREATE Data Types and Variable type for DA super type
+-->
+      <UADataType>
+        <xsl:attribute name="NodeId">ns=1;s=Base DA Data Type</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Base DA Data Type</xsl:attribute>
+        <DisplayName>IEC 61850 Base Data Attribute Data Type</DisplayName>
+        <Description>IEC 61850 Base Data Attribute Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=22</Reference>
+        </References>
+      </UADataType>
+      <UAVariableType>
+        <xsl:attribute name="NodeId">ns=1;s=Base DA Variable Type</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Base DA Variable Type</xsl:attribute>
+        <DisplayName>IEC 61850 Base DA Variable Type</DisplayName>
+        <Description>IEC 61850 Base DA Variable Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=62</Reference>
+        </References>
+      </UAVariableType>
+      <UAVariableType>
+        <xsl:attribute name="NodeId">ns=1;s=Base DO Variable Type</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Base DO Variable Type</xsl:attribute>
+        <DisplayName>IEC 61850 Base DA Variable Type</DisplayName>
+        <Description>IEC 61850 Base DA Variable Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=62</Reference>
+        </References>
+      </UAVariableType>
+
+      <!--
+Section 4:
+CREATE Data Types and Variable type for DA super type
+-->  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=BaseLN</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:BaseLN</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Base LogicalNode Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Base Logical Node Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=Logical Nodes</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Logical Nodes</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Logical Nodes</xsl:element>
+        <xsl:element name="Description">IEC 61850 Logical Nodes</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=Base CDC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Base CDC</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Base Common Data Class Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Base Common Data Class Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=Composed CDC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Composed CDC</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Composed Common Data Class Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Composed Common Data Class Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=Base CDC</Reference>
+        </References>
+      </UAObjectType>
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=Primitive CDC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Primitive CDC</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Primitive Common Data Class Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Primitive Common Data Class Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=Base CDC</Reference>
+        </References>
+      </UAObjectType>
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=Substitution CDC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Substitution CDC</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Substitution Common Data Class Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Substitution Common Data Class Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=Primitive CDC</Reference>
+        </References>
+      </UAObjectType>
+  
+<!--
+Section 5:
+CREATE Object Types and folders for non subtyped IEC 61850 types
+-->
+
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=IED</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:IED</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 IED Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 IED Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=IEDs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:IEDs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 IEDs</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=AccessPoint</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:AccessPoint</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 AccessPoint Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 AccessPoint Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=Access Points</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Access Points</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Access Points</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=IEC 61850 Server</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:IEC 61850 Server</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Server Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Server Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=IEC 61850 Servers</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:IEC 61850 Servers</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Servers</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=LogicalDevice</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:LogicalDevice</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 LogicalDevice Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 LogicalDevice Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=Logical Devices</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Logical Devices</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Logical Devices</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=ReportControl</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:ReportControl</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 ReportControl Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 ReportControl Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=Report Controls</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Report Controls</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Report Controls</xsl:element>
+        <xsl:element name="Description">IEC 61850 Report Controls</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=ReportControlOptFields</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:ReportControlOptFields</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 ReportControlOptFields Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 ReportControlOptFields Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=ReportControlTrgOps</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:ReportControlTrgOps</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 ReportControlTrgOps Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 ReportControlTrgOps Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=FunctionalConstraint</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:FunctionalConstraint</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 FunctionalConstraint Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 FunctionalConstraint Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=Functional Constraints</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Functional Constraints</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Functional Constraints</xsl:element>
+        <xsl:element name="Description">IEC 61850 Functional Constraints</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=STFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:STFC</xsl:attribute>
+        <xsl:element name="DisplayName">ST Functional Constraint</xsl:element>
+        <xsl:element name="Description">ST Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=MXFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:MXFC</xsl:attribute>
+        <xsl:element name="DisplayName">MX Functional Constraint</xsl:element>
+        <xsl:element name="Description">MX Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=COFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:COFC</xsl:attribute>
+        <xsl:element name="DisplayName">CO Functional Constraint</xsl:element>
+        <xsl:element name="Description">CO Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=SPFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:SPFC</xsl:attribute>
+        <xsl:element name="DisplayName">SP Functional Constraint</xsl:element>
+        <xsl:element name="Description">SP Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=SVFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:SVFC</xsl:attribute>
+        <xsl:element name="DisplayName">SV Functional Constraint</xsl:element>
+        <xsl:element name="Description">SV Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=CFFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:CFFC</xsl:attribute>
+        <xsl:element name="DisplayName">CF Functional Constraint</xsl:element>
+        <xsl:element name="Description">CF Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=DCFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:DCFC</xsl:attribute>
+        <xsl:element name="DisplayName">DC Functional Constraint</xsl:element>
+        <xsl:element name="Description">DC Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=SGFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:SGFC</xsl:attribute>
+        <xsl:element name="DisplayName">SG Functional Constraint</xsl:element>
+        <xsl:element name="Description">SG Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=SEFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:SEFC</xsl:attribute>
+        <xsl:element name="DisplayName">SE Functional Constraint</xsl:element>
+        <xsl:element name="Description">SE Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=EXFC</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:EXFC</xsl:attribute>
+        <xsl:element name="DisplayName">EX Functional Constraint</xsl:element>
+        <xsl:element name="Description">EX Functional Constraint</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=DataSet</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:DataSet</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 DataSet Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 DataSet Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=Data Sets</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Data Sets</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Data Sets</xsl:element>
+        <xsl:element name="Description">IEC 61850 Data Sets</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=SS</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:SS</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Substation Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Substation Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+        <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=SSs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:SSs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Substations</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=VL</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:VL</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 VoltageLevel Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 VoltageLevel Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+        <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=VLs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:VLs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 VoltageLevels</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=V</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:V</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Voltage Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Voltage Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+        <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=Vs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Vs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Voltages</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=XFR</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:XFR</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 PowerTransformer Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 PowerTransformer Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+        <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=XFRs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:XFRs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Power Transformers</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=TW</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:TW</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 TransformerWinding Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 TransformerWinding Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+        <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=TWs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:TWs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Transformer Windings</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=T</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:T</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Terminal Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Terminal Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAReferenceType NodeId="ns=1;s=T.CN"
+                      BrowseName="1:T.CN"
+                      IsAbstract="false"
+                      Symmetric="false">
+        <DisplayName>IEC 61850 Terminal.ConnectivityNode Reference</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=Base IEC 61850 Reference</Reference>
+        </References>
+        <InverseName>ConnectivityNode.Terminal</InverseName>
+      </UAReferenceType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=Ts</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Ts</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Terminal</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=CN</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:CN</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Connectivity Node Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Connectivity Node Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAReferenceType NodeId="ns=1;s=CN.T"
+                      BrowseName="1:CN.T"
+                      IsAbstract="false"
+                      Symmetric="false">
+        <DisplayName>IEC 61850 ConnectivityNode.Terminal Reference</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=Base IEC 61850 Reference</Reference>
+        </References>
+        <InverseName>Terminal.ConnectivityNode</InverseName>
+      </UAReferenceType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=CNs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:CNs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Connectivity Node</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=Bay</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Bay</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Bay Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 Bay Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=Bays</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:Bays</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Bays</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType>
+        <xsl:attribute name="NodeId">ns=1;s=CE</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:CE</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 ConductingEquipment Object Type</xsl:element>
+        <xsl:element name="Description">IEC 61850 ConductingEquipment Object Type</xsl:element>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=CEs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:CEs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 ConductingEquipments</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+<!--
+Section 6:
+Temporary DO and DA Folders for trouble shooting
+-->
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=DOs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:DOs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Data Objects</xsl:element>
+        <xsl:element name="Description">IEC 61850 Data Objects</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+      <UAObject>
+        <xsl:attribute name="NodeId">ns=1;s=DAs</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:DAs</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 61850 Data Attributes</xsl:element>
+        <xsl:element name="Description">IEC 61850 Data Attributes</xsl:element>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+<!--
+Section 7:
+CREATE Data Dictionary Variable
+-->
+      <UAVariable>
+        <xsl:attribute name="NodeId">ns=1;s=IEC 62541 Data Type Dictionary</xsl:attribute>
+        <xsl:attribute name="BrowseName">1:IEC 62541 Data Type Dictionary</xsl:attribute>
+        <xsl:element name="DisplayName">IEC 62541 Data Type Dictionary</xsl:element>
+        <xsl:element name="Description">IEC 62541 Data Type Dictionary</xsl:element>
+        <References>
+          <Reference ReferenceType="HasTypeDefinition">i=72</Reference>
+          <Reference ReferenceType="HasComponent" IsForward="false">i=93</Reference>
+        </References>
+      </UAVariable>
+</UANodeSet>

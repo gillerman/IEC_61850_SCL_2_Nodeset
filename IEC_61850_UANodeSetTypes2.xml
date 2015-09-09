@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Title:CID to UANodeset Stylesheet
+Copyright ©  OPC Foundation, Inc., 2013. Released 2013-02-22 10:34
+
+Authors: Denis Francesconi, Hydro-Québec
+         John Gillerman, GridCloudSystem, Inc.
+
+Unless explicitly acquired and licensed from Licensor under another license, 
+the contents of this file are subject to the Reciprocal Community License ("RCL") Version 0.9, 
+or subsequent versions as allowed by the RCL, and You may not copy or use this file in either source code 
+or executable form, except in compliance with the terms and conditions of the RCL.
+
+All software distributed under the RCL is provided strictly on an "AS IS" basis, 
+WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, AND LICENSOR HEREBY DISCLAIMS ALL SUCH WARRANTIES, 
+INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, 
+QUIET ENJOYMENT, OR NON-INFRINGEMENT. 
+
+See the RCL for specific language governing rights and limitations under the RCL.
+-->
+<UANodeSet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+           xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd"
+           xmlns:my="http://www.iec.ch/61850/2003/SCL"
+           xmlns:s0="http://sample.com/Types"
+           xmlns:s1="http://sample.com/Instances"
+           xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd C:/Users/Administrator/Desktop/John/UANodeSet.xsd">
+  <NamespaceUris>
+    <Uri>http://sample.com/Instances</Uri>
+    <Uri>http://sample.com/Types</Uri>
+  </NamespaceUris>
+  <Aliases>
+    <Alias Alias="Boolean">i=1</Alias>
+    <Alias Alias="SByte">i=2</Alias>
+    <Alias Alias="Byte">i=3</Alias>
+    <Alias Alias="Int16">i=4</Alias>
+    <Alias Alias="UInt16">i=5</Alias>
+    <Alias Alias="Int32">i=6</Alias>
+    <Alias Alias="UInt32">i=7</Alias>
+    <Alias Alias="Int64">i=8</Alias>
+    <Alias Alias="UInt64">i=9</Alias>
+    <Alias Alias="Float">i=10</Alias>
+    <Alias Alias="Double">i=11</Alias>
+    <Alias Alias="DateTime">i=13</Alias>
+    <Alias Alias="String">i=12</Alias>
+    <Alias Alias="Guid">i=14</Alias>
+    <Alias Alias="ByteString">i=15</Alias>
+    <Alias Alias="XmlElement">i=16</Alias>
+    <Alias Alias="NodeId">i=17</Alias>
+    <Alias Alias="ExpandedNodeId">i=18</Alias>
+    <Alias Alias="StatusCode">i=19</Alias>
+    <Alias Alias="QualifiedName">i=20</Alias>
+    <Alias Alias="LocalizedText">i=21</Alias>
+    <Alias Alias="Structure">i=22</Alias>
+    <Alias Alias="Number">i=26</Alias>
+    <Alias Alias="Integer">i=27</Alias>
+    <Alias Alias="UInteger">i=28</Alias>
+    <Alias Alias="HasChild">i=34</Alias>
+    <Alias Alias="Organizes">i=35</Alias>
+    <Alias Alias="HasEventSource">i=36</Alias>
+    <Alias Alias="HasModellingRule">i=37</Alias>
+    <Alias Alias="HasEncoding">i=38</Alias>
+    <Alias Alias="HasDescription">i=39</Alias>
+    <Alias Alias="HasTypeDefinition">i=40</Alias>
+    <Alias Alias="HasSubtype">i=45</Alias>
+    <Alias Alias="HasProperty">i=46</Alias>
+    <Alias Alias="HasComponent">i=47</Alias>
+    <Alias Alias="HasNotifier">i=48</Alias>
+    <Alias Alias="FolderType">i=58</Alias>
+    <Alias Alias="ObjectFolder">i=85</Alias>
+    <Alias Alias="TypeFolder">i=86</Alias>
+    <Alias Alias="ObjectTypes">i=88</Alias>
+  </Aliases>
+  
+<!--
+Section 1:
+CREATE Base Object and Reference Types
+-->
+      <UAObjectType NodeId="ns=1;s=BaseIEC61850ObjectType" BrowseName="1:BaseIEC61850ObjectType">
+        <DisplayName>IEC 61850 Base Object Type</DisplayName>
+        <Description>IEC 61850 Base Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
+        </References>
+      </UAObjectType>
+  
+      <UAReferenceType NodeId="ns=1;s=BaseIEC61850ReferenceType" BrowseName="1:BaseIEC61850ReferenceType" IsAbstract="true" Symmetric="false">
+        <DisplayName>IEC 61850 Base Reference Type</DisplayName>
+        <Description>IEC 61850 Base Reference Type</Description>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=32</Reference>
+        </References>
+        <InverseName>IEC61850ReferencedBy</InverseName>
+      </UAReferenceType>
+
+<!--
+Section 5:
+CREATE Object Types and folders for non subtyped IEC 61850 types
+-->
+
+      <UAObjectType NodeId="ns=1;s=IED" BrowseName="1:IED">
+        <DisplayName>IEC 61850 IED Object Type</DisplayName>
+        <Description>IEC 61850 IED Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=IEDs" BrowseName="1:IEDs">
+        <DisplayName>IEC 61850 IEDs</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=IEC61850AccessPoint" BrowseName="1:IEC61850AccessPoint">
+        <DisplayName>IEC 61850 AccessPoint Object Type</DisplayName>
+        <Description>IEC 61850 AccessPoint Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=IEC61850AccessPoints" BrowseName="1:IEC61850AccessPoints">
+        <DisplayName>IEC 61850 Access Points</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=IEC61850Server" BrowseName="1:IEC61850Server">
+        <DisplayName>IEC 61850 Server Object Type</DisplayName>
+        <Description>IEC 61850 Server Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=IEC61850Servers" BrowseName="1:IEC61850Servers">
+        <DisplayName>IEC 61850 Servers</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=LD" BrowseName="1:LD">
+        <DisplayName>IEC 61850 LogicalDevice Object Type</DisplayName>
+        <Description>IEC 61850 LogicalDevice Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=LDs" BrowseName="1:LDs">
+        <DisplayName>IEC 61850 Logical Devices</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=BaseLN" BrowseName="1:BaseLN">
+        <DisplayName>IEC 61850 Base LogicalNode Object Type</DisplayName>
+        <Description>IEC 61850 Base Logical Node Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=LNs" BrowseName="1:LNs">
+        <DisplayName>IEC 61850 Logical Nodes</DisplayName>
+        <Description>IEC 61850 Logical Nodes</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+      <UAReferenceType NodeId="ns=1;s=LNode.SSeq"
+                      BrowseName="1:LNode.SSeq"
+                      IsAbstract="false"
+                      Symmetric="false">
+        <DisplayName>LNode.SSeq</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ReferenceType</Reference>
+        </References>
+        <InverseName>SSeq.LNode</InverseName>
+      </UAReferenceType>
+        <UAReferenceType NodeId="ns=1;s=SSeq.LNode"
+                      BrowseName="1:SSeq.LNode"
+                      IsAbstract="false"
+                      Symmetric="false">
+        <DisplayName>SSeq.LNode</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ReferenceType</Reference>
+        </References>
+        <InverseName>LNode.SSeq</InverseName>
+      </UAReferenceType> 
+      
+      <UAObjectType NodeId="ns=1;s=ReportControl" BrowseName="1:ReportControl">
+        <DisplayName>IEC 61850 ReportControl Object Type</DisplayName>
+        <Description>IEC 61850 ReportControl Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=Report Controls" BrowseName="1:Report Controls">
+        <DisplayName>IEC 61850 Report Controls</DisplayName>
+        <Description>IEC 61850 Report Controls</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=ReportControlOptFields" BrowseName="1:ReportControlOptFields">
+        <DisplayName>IEC 61850 ReportControlOptFields Object Type</DisplayName>
+        <Description>IEC 61850 ReportControlOptFields Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObjectType NodeId="ns=1;s=ReportControlTrgOps" BrowseName="1:ReportControlTrgOps">
+        <DisplayName>IEC 61850 ReportControlTrgOps Object Type</DisplayName>
+        <Description>IEC 61850 ReportControlTrgOps Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+  
+      <UAObjectType NodeId="ns=1;s=FunctionalConstraint" BrowseName="1:FunctionalConstraint">
+        <DisplayName>IEC 61850 FunctionalConstraint Object Type</DisplayName>
+        <Description>IEC 61850 FunctionalConstraint Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=Functional Constraints" BrowseName="1:Functional Constraints">
+        <DisplayName>IEC 61850 Functional Constraints</DisplayName>
+        <Description>IEC 61850 Functional Constraints</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=STFC" BrowseName="1:STFC">
+        <DisplayName>ST Functional Constraint</DisplayName>
+        <Description>ST Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=MXFC" BrowseName="1:MXFC">
+        <DisplayName>MX Functional Constraint</DisplayName>
+        <Description>MX Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=COFC" BrowseName="1:COFC">
+        <DisplayName>CO Functional Constraint</DisplayName>
+        <Description>CO Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=SPFC" BrowseName="1:SPFC">
+        <DisplayName>SP Functional Constraint</DisplayName>
+        <Description>SP Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=SVFC" BrowseName="1:SVFC">
+        <DisplayName>SV Functional Constraint</DisplayName>
+        <Description>SV Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=CFFC" BrowseName="1:CFFC">
+        <DisplayName>CF Functional Constraint</DisplayName>
+        <Description>CF Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=DCFC" BrowseName="1:DCFC">
+        <DisplayName>DC Functional Constraint</DisplayName>
+        <Description>DC Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=SGFC" BrowseName="1:SGFC">
+        <DisplayName>SG Functional Constraint</DisplayName>
+        <Description>SG Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=SEFC" BrowseName="1:SEFC">
+        <DisplayName>SE Functional Constraint</DisplayName>
+        <Description>SE Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=EXFC" BrowseName="1:EXFC">
+        <DisplayName>EX Functional Constraint</DisplayName>
+        <Description>EX Functional Constraint</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=Functional Constraints</Reference>
+          <Reference ReferenceType="HasTypeDefinition">ns=1;s=FunctionalConstraint</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=DataSet" BrowseName="1:DataSet">
+        <DisplayName>IEC 61850 DataSet Object Type</DisplayName>
+        <Description>IEC 61850 DataSet Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=DataSets" BrowseName="1:DataSets">
+        <DisplayName>IEC 61850 Data Sets</DisplayName>
+        <Description>IEC 61850 Data Sets</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=SS" BrowseName="1:SS">
+        <DisplayName>IEC 61850 Substation Object Type</DisplayName>
+        <Description>IEC 61850 Substation Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=SSs" BrowseName="1:SSs">
+        <DisplayName>IEC 61850 Substations</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=VL" BrowseName="1:VL">
+        <DisplayName>IEC 61850 VoltageLevel Object Type</DisplayName>
+        <Description>IEC 61850 VoltageLevel Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=VLs" BrowseName="1:VLs">
+        <DisplayName>IEC 61850 VoltageLevels</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=V" BrowseName="1:V">
+        <DisplayName>IEC 61850 Voltage Object Type</DisplayName>
+        <Description>IEC 61850 Voltage Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=Vs" BrowseName="1:Vs">
+        <DisplayName>IEC 61850 Voltages</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=XFR" BrowseName="1:XFR">
+        <DisplayName>IEC 61850 PowerTransformer Object Type</DisplayName>
+        <Description>IEC 61850 PowerTransformer Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=XFRs" BrowseName="1:XFRs">
+        <DisplayName>IEC 61850 Power Transformers</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=TW" BrowseName="1:TW">
+        <DisplayName>IEC 61850 TransformerWinding Object Type</DisplayName>
+        <Description>IEC 61850 TransformerWinding Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=TWs" BrowseName="1:TWs">
+        <DisplayName>IEC 61850 Transformer Windings</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+  
+      <UAObjectType NodeId="ns=1;s=Bay" BrowseName="1:Bay">
+        <DisplayName>IEC 61850 Bay Object Type</DisplayName>
+        <Description>IEC 61850 Bay Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=Bays" BrowseName="1:Bays">
+        <DisplayName>IEC 61850 Bays</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=CE" BrowseName="1:CE">
+        <DisplayName>IEC 61850 Conducting Equipment Object Type</DisplayName>
+        <Description>IEC 61850 Conducting Equipment Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=CEs" BrowseName="1:CEs">
+        <DisplayName>IEC 61850 ConductingEquipments</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=SubE" BrowseName="1:SubE">
+        <DisplayName>IEC 61850 Sub Equipment Object Type</DisplayName>
+        <Description>IEC 61850 Sub Equipment Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=CE</Reference>
+        </References>
+      </UAObjectType>
+      <UAObject NodeId="ns=1;s=SubEs" BrowseName="1:SubEs">
+        <DisplayName>IEC 61850 Sub Equipments</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=T" BrowseName="1:T">
+        <DisplayName>IEC 61850 Terminal Object Type</DisplayName>
+        <Description>IEC 61850 Terminal Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType> 
+      <UAReferenceType NodeId="ns=1;s=T.CN"
+                      BrowseName="1:T.CN"
+                      IsAbstract="false"
+                      Symmetric="false">
+        <DisplayName>Terminal.ConnectivityNode</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ReferenceType</Reference>
+        </References>
+        <InverseName>ConnectivityNode.Terminal</InverseName>
+      </UAReferenceType> 
+      <UAObject NodeId="ns=1;s=Ts" BrowseName="1:Ts">
+        <DisplayName>IEC 61850 Terminals</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+  
+      <UAObjectType NodeId="ns=1;s=CN" BrowseName="1:CN">
+        <DisplayName>IEC 61850 Connectivity Node Object Type</DisplayName>
+        <Description>IEC 61850 Connectivity Node Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAReferenceType NodeId="ns=1;s=CN.T"
+                      BrowseName="1:CN.T"
+                      IsAbstract="false"
+                      Symmetric="false">
+        <DisplayName>ConnectivityNode.Terminal</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ReferenceType</Reference>
+        </References>
+        <InverseName>Terminal.ConnectivityNode</InverseName>
+      </UAReferenceType>
+      <UAObject NodeId="ns=1;s=CNs" BrowseName="1:CNs">
+        <DisplayName>IEC 61850 Connectivity Nodes</DisplayName>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+
+<!--
+Section 4:
+CREATE Object Types for CDC super types
+-->  
+      <UAObjectType NodeId="ns=1;s=BaseCDC" BrowseName="1:BaseCDC">
+        <DisplayName>IEC 61850 Base Common Data Class Object Type</DisplayName>
+        <Description>IEC 61850 Base Common Data Class Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseIEC61850ObjectType</Reference>
+        </References>
+      </UAObjectType>
+      <UAObjectType NodeId="ns=1;s=ComposedCDC" BrowseName="1:ComposedCDC">
+        <DisplayName>IEC 61850 Composed Common Data Class Object Type</DisplayName>
+        <Description>IEC 61850 Composed Common Data Class Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseCDC</Reference>
+        </References>
+      </UAObjectType>
+      <UAObjectType NodeId="ns=1;s=PrimitiveCDC" BrowseName="1:PrimitiveCDC">
+        <DisplayName>IEC 61850 Primitive Common Data Class Object Type</DisplayName>
+        <Description>IEC 61850 Primitive Common Data Class Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseCDC</Reference>
+        </References>
+      </UAObjectType>
+      <UAObjectType NodeId="ns=1;s=SubstitutionCDC" BrowseName="1:SubstitutionCDC">
+        <DisplayName>IEC 61850 Substitution Common Data Class Object Type</DisplayName>
+        <Description>IEC 61850 Substitution Common Data Class Object Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=PrimitiveCDC</Reference>
+        </References>
+      </UAObjectType>
+<!--  
+Section 3:
+CREATE Data Types for CDC super types
+-->
+      <UADataType NodeId="ns=1;s=BaseCDCDataType" BrowseName="1:BaseCDCDataType">
+        <DisplayName>IEC 61850 Base Common Data Class Data Type</DisplayName>
+        <Description>IEC 61850 Base Common Data Class Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=22</Reference>
+        </References>
+      </UADataType>
+      <UADataType NodeId="ns=1;s=ComposedCDCDataType" BrowseName="1:ComposedCDCDataType">
+        <DisplayName>IEC 61850 Composed Common Data Class Data Type</DisplayName>
+        <Description>IEC 61850 Composed Common Data Class Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseCDCDataType</Reference>
+        </References>
+      </UADataType>
+      <UADataType NodeId="ns=1;s=PrimitiveCDCDataType" BrowseName="1:PrimitiveCDCDataType">
+        <DisplayName>IEC 61850 Primitive Common Data Class Data Type</DisplayName>
+        <Description>IEC 61850 Primitive Common Data Class Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=BaseCDCDataType</Reference>
+        </References>
+      </UADataType>
+      <UADataType NodeId="ns=1;s=SubstitutionCDCDataType" BrowseName="1:SubstitutionCDCDataType">
+        <DisplayName>IEC 61850 Substitution Common Data Class Data Type</DisplayName>
+        <Description>IEC 61850 Substitution Common Data Class Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;s=PrimitiveCDCDataType</Reference>
+        </References>
+      </UADataType>
+<!--
+Section 5:
+CREATE Data Types and Variable type for DA super type
+-->
+      <UAVariableType NodeId="ns=1;s=BaseDOVariableType" BrowseName="1:BaseDOVariableType">
+        <DisplayName>IEC 61850 Base Data Object Variable Type</DisplayName>
+        <Description>IEC 61850 Base Data Object Variable Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=62</Reference>
+        </References>
+      </UAVariableType>    
+      <UADataType NodeId="ns=1;s=BaseDADataType" BrowseName="1:BaseDADataType">
+        <DisplayName>IEC 61850 Base Data Attribute Data Type</DisplayName>
+        <Description>IEC 61850 Base Data Attribute Data Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=22</Reference>
+        </References>
+      </UADataType>
+      <UAVariableType NodeId="ns=1;s=BaseDAVariableType" BrowseName="1:BaseDAVariableType">
+        <DisplayName>IEC 61850 Base Data Attribute Variable Type</DisplayName>
+        <Description>IEC 61850 Base Data Attribute Variable Type</Description>
+        <References>
+          <Reference ReferenceType="HasSubtype" IsForward="false">i=62</Reference>
+        </References>
+      </UAVariableType>
+
+<!--
+Section 6:
+Temporary DO and DA Folders for trouble shooting
+-->
+      <UAObject NodeId="ns=1;s=DOs" BrowseName="1:DOs">
+        <DisplayName>IEC 61850 Data Objects</DisplayName>
+        <Description>IEC 61850 Data Objects</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+      <UAObject NodeId="ns=1;s=DAs" BrowseName="1:DAs">
+        <DisplayName>IEC 61850 Data Attributes</DisplayName>
+        <Description>IEC 61850 Data Attributes</Description>
+        <References>
+          <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
+          <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+      </UAObject>
+<!--
+Section 7:
+CREATE Data Dictionary Variable
+-->
+      <UAVariable NodeId="ns=1;s=IEC62541DataTypeDictionary" BrowseName="1:IEC62541DataTypeDictionary">
+        <DisplayName>IEC 62541 Data Type Dictionary</DisplayName>
+        <Description>IEC 62541 Data Type Dictionary</Description>
+        <References>
+          <Reference ReferenceType="HasTypeDefinition">i=72</Reference>
+          <Reference ReferenceType="HasComponent" IsForward="false">i=93</Reference>
+        </References>
+      </UAVariable>
+</UANodeSet>

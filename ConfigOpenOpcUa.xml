@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServerConfig xmlns="http://tempuri.org/ServerConfig.xsd" ServerName="OpenOpcUAServer">
+  <Trace Level="ERROR" Output="FILE"></Trace>
+  <Binding  Protocol="TCP" Port="48030" Encoding="Binary"/>
+  <!--<FileNodeSet FullFileName=".\Opc.Ua.NodeSet2.xml"/>-->
+  <FileNodeSet FullFileName=".\Opc.Ua.NodeSet2.Part3.xml"/>
+  <FileNodeSet FullFileName=".\Opc.Ua.NodeSet2.Part4.xml"/>
+  <FileNodeSet FullFileName=".\Opc.Ua.NodeSet2.Part5.xml"/>
+  <FileNodeSet FullFileName=".\Opc.Ua.NodeSet2.Part8.xml"/>
+  <FileNodeSet FullFileName=".\Opc.Ua.NodeSet2.Part9.xml"/>
+  <FileNodeSet FullFileName=".\Opc.Ua.NodeSet2.Part11.xml"/>  
+  <FileNodeSet FullFileName=".\IEC_61850_CID_UANodesetTypes9.xml"/>
+  <FileNodeSet FullFileName=".\IEC_61850_CID_UANodeset9.xml"/>
+  <!--<FileNodeSet FullFileName=".\IEC_61850_SCD_UANodesetTypes9.xml"/>-->
+  <!--<FileNodeSet FullFileName=".\IEC_61850_SCD_UANodeset9.xml"/>-->
+  <HistoricalAccess ArchiveId="ns=1;i=200" ArchiveName="CSV" VfiName="VfiCsvd" ></HistoricalAccess>
+</ServerConfig>
